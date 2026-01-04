@@ -39,7 +39,7 @@ export function Hero() {
                         </Link>
                     </Button>
                     <Button size="lg" variant="outline" asChild>
-                        <Link href="https://github.com/tu-usuario/zafra" target="_blank">
+                        <Link href="https://github.com/Nogthings/zafra" target="_blank">
                             <Github className="mr-2 h-4 w-4" /> GitHub
                         </Link>
                     </Button>

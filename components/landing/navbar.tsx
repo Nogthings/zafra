@@ -77,7 +77,7 @@ export function Navbar() {
                     <div className="hidden md:flex items-center space-x-2">
                         <ModeToggle />
                         <Button variant="ghost" size="icon" asChild>
-                            <Link href="https://github.com/tu-usuario/zafra" target="_blank" rel="noreferrer">
+                            <Link href="https://github.com/Nogthings/zafra" target="_blank" rel="noreferrer">
                                 <Github className="h-4 w-4" />
                                 <span className="sr-only">GitHub</span>
                             </Link>

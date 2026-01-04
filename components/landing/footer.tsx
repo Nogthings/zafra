@@ -14,11 +14,11 @@ export function Footer() {
                             rel="noreferrer"
                             className="font-medium underline underline-offset-4"
                         >
-                            Zafra
+                            Nogx
                         </Link>
                         . The source code is available on{" "}
                         <Link
-                            href="https://github.com/tu-usuario/zafra"
+                            href="https://github.com/Nogthings/zafra"
                             target="_blank"
                             rel="noreferrer"
                             className="font-medium underline underline-offset-4"
@@ -29,7 +29,7 @@ export function Footer() {
                     </p>
                 </div>
                 <div className="flex gap-4">
-                    <Link href="https://github.com/tu-usuario/zafra" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
+                    <Link href="https://github.com/Nogthings/zafra" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
                         <Github className="h-5 w-5" />
                     </Link>
                     <Link href="https://twitter.com/tu_usuario" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
