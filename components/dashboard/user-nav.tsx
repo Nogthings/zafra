@@ -18,6 +18,7 @@ import {
   } from "@/components/ui/dropdown-menu"
   import { signOut } from "@/app/login/actions"
   import { User } from "@supabase/supabase-js"
+  import Link from "next/link"
   
   interface UserNavProps {
     user: User
@@ -48,10 +49,12 @@ import {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              Profile
-              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-            </DropdownMenuItem>
+            <Link href="/dashboard/profile">
+              <DropdownMenuItem>
+                Profile
+                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>
               Billing
               <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>

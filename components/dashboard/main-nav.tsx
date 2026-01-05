@@ -19,10 +19,10 @@ export function MainNav({
         Overview
       </Link>
       <Link
-        href="/dashboard/settings"
+        href="/dashboard/teams"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
-        Settings
+        Teams
       </Link>
     </nav>
   )

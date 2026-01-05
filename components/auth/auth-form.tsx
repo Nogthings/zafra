@@ -21,9 +21,10 @@ type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
-  const [mode, setMode] = React.useState<'login' | 'signup'>('login')
-  
   const searchParams = useSearchParams()
+  const [mode, setMode] = React.useState<'login' | 'signup'>(
+    searchParams.get('view') === 'signup' ? 'signup' : 'login'
+  )
   const error = searchParams.get('error')
   const message = searchParams.get('message')
 
@@ -47,8 +48,14 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     formData.append('email', target.email.value)
     formData.append('password', target.password.value)
     
+    const next = searchParams.get('next')
+    
     if (mode === 'signup' && target.full_name) {
       formData.append('full_name', target.full_name.value)
+    }
+    
+    if (next) {
+        formData.append('next', next)
     }
 
     try {
