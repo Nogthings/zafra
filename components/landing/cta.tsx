@@ -15,7 +15,7 @@ export function CTA() {
                 </p>
                 <div className="flex gap-4 mt-6">
                     <Button size="lg" asChild>
-                        <Link href="#start">Get Started Now</Link>
+                        <Link href="/login">Get Started Now</Link>
                     </Button>
                 </div>
             </div>

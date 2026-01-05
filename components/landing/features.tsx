@@ -1,6 +1,7 @@
 "use client"
 
-import { Database, Layout, CreditCard, Lock, Zap, Github } from "lucide-react"
+import { Database, Layout, CreditCard, Lock, Zap } from "lucide-react"
+import { Icons } from "@/components/icons"
 import {
     Card,
     CardContent,
@@ -37,7 +38,7 @@ const features = [
     {
         name: "Open Source",
         description: "MIT Licensed. Free for personal and commercial use.",
-        icon: Github,
+        icon: Icons.gitHub,
     },
 ]
 

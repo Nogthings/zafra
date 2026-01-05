@@ -3,7 +3,8 @@
 import * as React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Github, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
+import { Icons } from "@/components/icons"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
 import {
@@ -78,12 +79,12 @@ export function Navbar() {
                         <ModeToggle />
                         <Button variant="ghost" size="icon" asChild>
                             <Link href="https://github.com/Nogthings/zafra" target="_blank" rel="noreferrer">
-                                <Github className="h-4 w-4" />
+                                <Icons.gitHub className="h-4 w-4" />
                                 <span className="sr-only">GitHub</span>
                             </Link>
                         </Button>
                         <Button size="sm" asChild>
-                            <Link href="#start">Get Started</Link>
+                            <Link href="/login">Get Started</Link>
                         </Button>
                     </div>
 
@@ -106,7 +107,7 @@ export function Navbar() {
                                     <Link href="#" className="text-lg font-medium">
                                         Documentation
                                     </Link>
-                                    <Link href="#start">
+                                    <Link href="/login">
                                         <Button className="w-full">Get Started</Button>
                                     </Link>
                                 </div>

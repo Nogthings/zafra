@@ -12,11 +12,11 @@ import { login, signup } from "@/app/login/actions"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Icons } from "@/components/icons" // We might need to create this or use Lucide directly
 
-import { Loader2, Mail, Github } from "lucide-react"
+import { Loader2, Mail } from "lucide-react"
+import { Icons } from "@/components/icons"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
@@ -179,7 +179,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         {isGitHubLoading ? (
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <Github className="mr-2 h-4 w-4" />
+          <Icons.gitHub className="mr-2 h-4 w-4" />
         )}{" "}
         GitHub
       </Button>

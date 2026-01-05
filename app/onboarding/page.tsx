@@ -11,7 +11,7 @@ export default function OnboardingPage() {
         <CardHeader>
           <CardTitle>Welcome to Zafra</CardTitle>
           <CardDescription>
-            Let's create your first organization to get started.
+            Let&apos;s create your first organization to get started.
           </CardDescription>
         </CardHeader>
         <form action={createTenant}>

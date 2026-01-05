@@ -31,10 +31,10 @@ export function Terminal() {
                 <div className="flex items-center gap-2">
                     <span className="text-green-500">➜</span>
                     <span className="text-zinc-400">~</span>
-                    <span>git clone https://github.com/zafra/zafra.git</span>
+                    <span>git clone https://github.com/Nogthings/zafra.git</span>
                 </div>
                 {step >= 1 && (
-                    <div className="text-zinc-500 pl-4">Cloning into 'zafra'...</div>
+                    <div className="text-zinc-500 pl-4">Cloning into &apos;zafra&apos;...</div>
                 )}
 
                 {step >= 1 && (

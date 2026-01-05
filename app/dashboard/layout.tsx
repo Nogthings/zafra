@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import TenantSwitcher from "@/components/dashboard/tenant-switcher"
 import { MainNav } from "@/components/dashboard/main-nav"
 import { UserNav } from "@/components/dashboard/user-nav"
+import { ModeToggle } from "@/components/mode-toggle"
 
 export default async function DashboardLayout({
   children,
@@ -39,6 +40,7 @@ export default async function DashboardLayout({
           <TenantSwitcher tenants={tenants || []} />
           <MainNav className="mx-6" />
           <div className="ml-auto flex items-center space-x-4">
+            <ModeToggle />
             <UserNav />
           </div>
         </div>

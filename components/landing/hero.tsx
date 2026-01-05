@@ -3,7 +3,8 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight, Github } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import { Icons } from "@/components/icons"
 import { Terminal } from "@/components/landing/terminal"
 
 export function Hero() {
@@ -34,13 +35,13 @@ export function Hero() {
                     className="flex gap-4"
                 >
                     <Button size="lg" asChild>
-                        <Link href="#start">
+                        <Link href="/login">
                             Get Started <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
                     <Button size="lg" variant="outline" asChild>
                         <Link href="https://github.com/Nogthings/zafra" target="_blank">
-                            <Github className="mr-2 h-4 w-4" /> GitHub
+                            <Icons.gitHub className="mr-2 h-4 w-4" /> GitHub
                         </Link>
                     </Button>
                 </motion.div>
