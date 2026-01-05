@@ -1,9 +1,9 @@
 import { createClient } from "@/lib/supabase/server"
-import { redirect } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { acceptInvitation } from "./actions"
+
+import { InviteForm } from "./invite-form"
 
 export default async function InvitePage(props: { params: Promise<{ token: string }> }) {
     const params = await props.params
@@ -85,12 +85,7 @@ export default async function InvitePage(props: { params: Promise<{ token: strin
                                     You can still accept, but ensure this is intended.
                                 </div>
                             )}
-                            <form action={acceptInvitation}>
-                                <input type="hidden" name="token" value={token} />
-                                <Button className="w-full" type="submit">
-                                    Accept Invitation
-                                </Button>
-                            </form>
+                            <InviteForm token={token} />
                         </div>
                     ) : (
                         <div className="space-y-4">

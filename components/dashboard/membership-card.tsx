@@ -13,12 +13,14 @@ interface MembershipCardProps {
   planActive: boolean
   subscriptionId: string | null
   currentPeriodEnd: string | null
+  role: string | null
 }
 
 export function MembershipCard({
   planActive,
   subscriptionId,
   currentPeriodEnd,
+  role,
 }: MembershipCardProps) {
   return (
     <Card>
@@ -62,13 +64,15 @@ export function MembershipCard({
              </p>
         )}
 
-        <div className="mt-4">
-            <form action={createPortalSession}>
-                <Button variant="outline" className="w-full">
-                    Manage Subscription
-                </Button>
-            </form>
-        </div>
+        {role === 'owner' && (
+            <div className="mt-4">
+                <form action={createPortalSession}>
+                    <Button variant="outline" className="w-full">
+                        Manage Subscription
+                    </Button>
+                </form>
+            </div>
+        )}
       </CardContent>
     </Card>
   )

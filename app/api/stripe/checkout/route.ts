@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
             .eq("profile_id", user.id)
             .single()
 
-        if (!membership) {
+        if (!membership || membership.role !== 'owner') {
             return new NextResponse("Unauthorized tenant access", { status: 403 })
         }
         

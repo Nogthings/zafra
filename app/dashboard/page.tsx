@@ -33,7 +33,7 @@ export default async function DashboardPage() {
     // Fetch user's tenant membership
     const { data: membership } = await supabase
         .from("tenant_profiles")
-        .select("tenant_id")
+        .select("tenant_id, role")
         .eq("profile_id", user.id)
         .single()
     
@@ -74,6 +74,7 @@ export default async function DashboardPage() {
                 planActive={tenant?.plan_active || false}
                 subscriptionId={tenant?.stripe_subscription_id || null}
                 currentPeriodEnd={tenant?.stripe_current_period_end || null}
+                role={membership?.role || 'member'}
             />
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

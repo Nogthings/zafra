@@ -10,9 +10,20 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { inviteUser, removeMember, cancelInvitation } from "./actions"
+import { inviteUser } from "./actions"
 import { InviteMemberDialog } from "@/components/dashboard/teams/invite-dialog"
-import { Trash2 } from "lucide-react"
+import { RemoveMemberDialog } from "@/components/dashboard/teams/remove-member-dialog"
+import { RevokeInvitationButton } from "@/components/dashboard/teams/revoke-invitation-button"
+
+interface TeamMember {
+  role: string
+  profile: {
+    id: string
+    full_name: string | null
+    email: string | null
+    avatar_url: string | null
+  }
+}
 
 export default async function TeamsPage() {
   const supabase = await createClient()
@@ -50,6 +61,7 @@ export default async function TeamsPage() {
         profile:profiles(id, full_name, email, avatar_url)
     `)
     .eq("tenant_id", currentTenantId)
+    .returns<TeamMember[]>()
 
   // Fetch invitations
   const { data: invitations } = await supabase
@@ -76,11 +88,11 @@ export default async function TeamsPage() {
             {currentUserRole === 'owner' && <InviteMemberDialog tenantId={currentTenantId} />}
         </CardHeader>
         <CardContent className="space-y-4 pt-4">
-            {members?.map((member: any) => (
+            {members?.map((member) => (
                 <div key={member.profile.id} className="flex items-center justify-between space-x-4">
                     <div className="flex items-center space-x-4">
                         <Avatar>
-                            <AvatarImage src={member.profile.avatar_url} />
+                            <AvatarImage src={member.profile.avatar_url || undefined} />
                             <AvatarFallback>{member.profile.email?.[0].toUpperCase()}</AvatarFallback>
                         </Avatar>
                         <div>
@@ -93,13 +105,10 @@ export default async function TeamsPage() {
                             {member.role}
                         </Badge>
                         {currentUserRole === 'owner' && member.profile.id !== user.id && (
-                             <form action={removeMember}>
-                                <input type="hidden" name="tenant_id" value={currentTenantId} />
-                                <input type="hidden" name="profile_id" value={member.profile.id} />
-                                <Button variant="ghost" size="icon" className="text-destructive">
-                                    <Trash2 className="h-4 w-4" />
-                                </Button>
-                             </form>
+                             <RemoveMemberDialog 
+                                tenantId={currentTenantId} 
+                                profileId={member.profile.id} 
+                             />
                         )}
                     </div>
                 </div>
@@ -124,12 +133,7 @@ export default async function TeamsPage() {
                         <div className="flex items-center space-x-2">
                              <Badge variant="outline">{invite.role}</Badge>
                              {currentUserRole === 'owner' && (
-                                <form action={cancelInvitation}>
-                                    <input type="hidden" name="invite_id" value={invite.id} />
-                                    <Button variant="ghost" size="sm" className="text-destructive h-8">
-                                        Revoke
-                                    </Button>
-                                </form>
+                                <RevokeInvitationButton inviteId={invite.id} />
                              )}
                         </div>
                     </div>

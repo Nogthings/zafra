@@ -15,13 +15,15 @@ export async function createPortalSession() {
     // Get tenant
     const { data: membership } = await supabase
         .from("tenant_profiles")
-        .select("tenant_id")
+        .select("tenant_id, role")
         .eq("profile_id", user.id)
         .single()
 
-    if (!membership) {
-        throw new Error("No membership found")
+    if (!membership || membership.role !== 'owner') {
+        throw new Error("Unauthorized")
     }
+
+
 
     const { data: tenant } = await supabase
         .from("tenants")

@@ -3,7 +3,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 
-export async function acceptInvitation(formData: FormData) {
+export async function acceptInvitation(prevState: { error: string } | null, formData: FormData) {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
 
@@ -25,3 +25,6 @@ export async function acceptInvitation(formData: FormData) {
 
     redirect("/dashboard")
 }
+
+// Forced refresh
+
