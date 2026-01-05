@@ -6,10 +6,15 @@ import { FAQ } from "@/components/landing/faq"
 import { CTA } from "@/components/landing/cta"
 import { Footer } from "@/components/landing/footer"
 
-export default function Home() {
+import { createClient } from "@/lib/supabase/server"
+
+export default async function Home() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
   return (
     <div className="flex min-h-screen flex-col">
-      <Navbar />
+      <Navbar user={user} />
       <main className="flex-1">
         <Hero />
         <Features />

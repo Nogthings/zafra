@@ -12,9 +12,15 @@ import {
     SheetContent,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import { User } from "@supabase/supabase-js"
 
-export function Navbar() {
+interface NavbarProps {
+    user: User | null
+}
+
+export function Navbar({ user }: NavbarProps) {
     const [activeSection, setActiveSection] = React.useState<string>("")
+    const [isMounted, setIsMounted] = React.useState(false)
 
     React.useEffect(() => {
         const observers: IntersectionObserver[] = []
@@ -38,6 +44,7 @@ export function Navbar() {
             }
         })
 
+        setIsMounted(true)
         return () => {
             observers.forEach((observer) => observer.disconnect())
         }
@@ -83,36 +90,56 @@ export function Navbar() {
                                 <span className="sr-only">GitHub</span>
                             </Link>
                         </Button>
-                        <Button size="sm" asChild>
-                            <Link href="/login">Get Started</Link>
-                        </Button>
+                        {user ? (
+                            <Button size="sm" asChild>
+                                <Link href="/dashboard">Dashboard</Link>
+                            </Button>
+                        ) : (
+                            <Button size="sm" asChild>
+                                <Link href="/login">Get Started</Link>
+                            </Button>
+                        )}
                     </div>
 
                     <div className="md:hidden flex items-center gap-2">
                         <ModeToggle />
-                        <Sheet>
-                            <SheetTrigger asChild>
-                                <Button variant="ghost" size="icon">
-                                    <Menu className="h-5 w-5" />
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent>
-                                <div className="flex flex-col space-y-4 mt-8">
-                                    <Link href="#features" className="text-lg font-medium">
-                                        Features
-                                    </Link>
-                                    <Link href="#donations" className="text-lg font-medium">
-                                        Support
-                                    </Link>
-                                    <Link href="#" className="text-lg font-medium">
-                                        Documentation
-                                    </Link>
-                                    <Link href="/login">
-                                        <Button className="w-full">Get Started</Button>
-                                    </Link>
-                                </div>
-                            </SheetContent>
-                        </Sheet>
+                        {/* Mobile Menu - Client only to prevent hydration mismatch with Radix IDs */}
+                        {/* Mobile Menu - Client only to prevent hydration mismatch with Radix IDs */}
+                        {!isMounted ? (
+                             <Button variant="ghost" size="icon">
+                                 <Menu className="h-5 w-5" />
+                             </Button>
+                        ) : (
+                            <Sheet>
+                                <SheetTrigger asChild>
+                                    <Button variant="ghost" size="icon">
+                                        <Menu className="h-5 w-5" />
+                                    </Button>
+                                </SheetTrigger>
+                                <SheetContent>
+                                    <div className="flex flex-col space-y-4 mt-8">
+                                        <Link href="#features" className="text-lg font-medium">
+                                            Features
+                                        </Link>
+                                        <Link href="#donations" className="text-lg font-medium">
+                                            Support
+                                        </Link>
+                                        <Link href="#" className="text-lg font-medium">
+                                            Documentation
+                                        </Link>
+                                        {user ? (
+                                            <Link href="/dashboard">
+                                                <Button className="w-full">Dashboard</Button>
+                                            </Link>
+                                        ) : (
+                                            <Link href="/login">
+                                                <Button className="w-full">Get Started</Button>
+                                            </Link>
+                                        )}
+                                    </div>
+                                </SheetContent>
+                            </Sheet>
+                        )}
                     </div>
                 </div>
             </div>
